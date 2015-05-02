@@ -1,0 +1,15 @@
+OASISFormat:  0.4
+Name:         bike-geometry
+Version:      0.1.0
+Synopsis:     Program for plotting bike geometry
+License:      MIT
+Authors:      John Else
+Copyrights:   (C) 2015 John Else
+BuildTools:   ocamlbuild
+Plugins:      META (0.4), DevFiles (0.4)
+
+Executable bike_geometry
+  CompiledObject: byte
+  Path:           src
+  MainIs:         bike_geometry.ml
+  BuildDepends:   js_of_ocaml, js_of_ocaml.syntax
