@@ -1,11 +1,11 @@
 _build
 _tags
 
-bike_geometry.js
-
 myocamlbuild.ml
 setup.data
 setup.log
+
+page/bike_geometry.js
 
 *.byte
 *.swp
