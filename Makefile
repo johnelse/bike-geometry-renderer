@@ -1,3 +1,6 @@
+bike_geometry.js: all
+	js_of_ocaml bike_geometry.byte
+
 # OASIS_START
 # DO NOT EDIT (digest: a3c674b4239234cbbe53afe090018954)
 
@@ -26,6 +29,7 @@ reinstall: setup.data
 
 clean:
 	$(SETUP) -clean $(CLEANFLAGS)
+	rm -f bike_geometry.js
 
 distclean:
 	$(SETUP) -distclean $(DISTCLEANFLAGS)
