@@ -28,8 +28,8 @@ let scale geometry = {geometry with
 let test_geometry = scale {
   bb_rise           = -13.5;
   chain_stay_length = 411.0;
-  head_angle        = 65.5;
-  seat_angle        = 72.0;
+  head_angle        = 65.5 *. pi /. 180.0;
+  seat_angle        = 72.0 *. pi /. 180.0;
   wheel_radius      = 340.0;
   wheel_base        = 1103.0;
 }
