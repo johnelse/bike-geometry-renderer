@@ -12,6 +12,7 @@ type geometry = {
   chain_stay_length : float;
   head_angle        : float;
   seat_angle        : float;
+  seat_tube_length  : float;
   wheel_radius      : float;
   wheel_base        : float;
 }
@@ -21,6 +22,7 @@ let scale_factor = 4.0
 let scale geometry = {geometry with
   bb_rise           = geometry.bb_rise           /. scale_factor;
   chain_stay_length = geometry.chain_stay_length /. scale_factor;
+  seat_tube_length  = geometry.seat_tube_length  /. scale_factor;
   wheel_radius      = geometry.wheel_radius      /. scale_factor;
   wheel_base        = geometry.wheel_base        /. scale_factor;
 }
@@ -30,6 +32,7 @@ let test_geometry = scale {
   chain_stay_length = 411.0;
   head_angle        = 65.5 *. pi /. 180.0;
   seat_angle        = 72.0 *. pi /. 180.0;
+  seat_tube_length  = 393.0;
   wheel_radius      = 340.0;
   wheel_base        = 1103.0;
 }
@@ -72,7 +75,13 @@ let render ctx geometry =
       sqrt (geometry.chain_stay_length ** 2.0 -. geometry.bb_rise ** 2.0);
     y = rear_wheel_centre.y -. geometry.bb_rise;
   } in
-  line ctx rear_wheel_centre bb_centre
+  line ctx rear_wheel_centre bb_centre;
+  (* Seat tube. *)
+  let seat_tube_top = {
+    x = bb_centre.x +. geometry.seat_tube_length *. (cos geometry.seat_angle);
+    y = bb_centre.y -. geometry.seat_tube_length *. (sin geometry.seat_angle);
+  } in
+  line ctx bb_centre seat_tube_top
 
 let start _ =
   let canvas = create_canvas width height in
