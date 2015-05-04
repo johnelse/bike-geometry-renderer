@@ -2,6 +2,11 @@ module Html = Dom_html
 
 let pi = 4. *. atan 1.
 
+type point = {
+  x: float;
+  y: float;
+}
+
 type geometry = {
   head_angle   : float;
   seat_angle   : float;
@@ -32,35 +37,24 @@ let create_canvas width height =
   canvas##height <- height;
   canvas
 
+let circle ctx centre radius =
+  ctx##moveTo (centre.x +. radius, centre.y);
+  ctx##arc (centre.x, centre.y, radius, 0., 2. *. pi, Js._true);
+  ctx##stroke ()
+
 let render ctx geometry =
   (* Front wheel. *)
-  ctx##moveTo (
-    2. *. geometry.wheel_radius,
-    (float height) -. geometry.wheel_radius
-  );
-  ctx##arc (
-    geometry.wheel_radius,
-    (float height) -. geometry.wheel_radius,
-    geometry.wheel_radius,
-    0.,
-    2. *. pi,
-    Js._true
-  );
-  ctx##stroke ();
+  let front_wheel_centre = {
+    x = geometry.wheel_radius;
+    y = (float height) -. geometry.wheel_radius;
+  } in
+  circle ctx front_wheel_centre geometry.wheel_radius;
   (* Rear wheel. *)
-  ctx##moveTo (
-    2. *. geometry.wheel_radius +. geometry.wheel_base,
-    (float height) -. geometry.wheel_radius
-  );
-  ctx##arc (
-    geometry.wheel_radius +. geometry.wheel_base,
-    (float height) -. geometry.wheel_radius,
-    geometry.wheel_radius,
-    0.,
-    2. *. pi,
-    Js._true
-  );
-  ctx##stroke ()
+  let rear_wheel_centre = {
+    x = geometry.wheel_radius +. geometry.wheel_base;
+    y = front_wheel_centre.y;
+  } in
+  circle ctx rear_wheel_centre geometry.wheel_radius
 
 let start _ =
   let canvas = create_canvas width height in
