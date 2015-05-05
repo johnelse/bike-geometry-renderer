@@ -31,7 +31,7 @@ let scale geometry = {geometry with
   wheel_base        = geometry.wheel_base        /. scale_factor;
 }
 
-let test_geometry = scale {
+let ns_surge_medium = scale {
   bb_rise           = -13.5;
   chain_stay_length = 411.0;
   head_angle        = 65.5 *. pi /. 180.0;
@@ -106,7 +106,7 @@ let start _ =
   let ctx = canvas##getContext (Html._2d_) in
   ctx##strokeStyle <- (Js.string "#000000");
   ctx##clearRect (0., 0., float width, float height);
-  render ctx test_geometry;
+  render ctx ns_surge_medium;
   ctx##stroke ();
   Js._false
 
