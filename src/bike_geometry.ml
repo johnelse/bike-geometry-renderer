@@ -81,7 +81,9 @@ let render ctx geometry =
     x = bb_centre.x +. geometry.seat_tube_length *. (cos geometry.seat_angle);
     y = bb_centre.y -. geometry.seat_tube_length *. (sin geometry.seat_angle);
   } in
-  line ctx bb_centre seat_tube_top
+  line ctx bb_centre seat_tube_top;
+  (* Seat stays. *)
+  line ctx rear_wheel_centre seat_tube_top
 
 let start _ =
   let canvas = create_canvas width height in
