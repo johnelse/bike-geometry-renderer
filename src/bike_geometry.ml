@@ -59,10 +59,10 @@ let circle ctx centre radius =
 
 let line ctx start finish =
   ctx##moveTo (start.x, start.y);
-  ctx##lineTo (finish.x, finish.y);
-  ctx##stroke ()
+  ctx##lineTo (finish.x, finish.y)
 
 let render ctx geometry =
+  ctx##beginPath ();
   (* Front wheel. *)
   let front_wheel_centre = {
     x = geometry.wheel_radius;
@@ -97,7 +97,8 @@ let render ctx geometry =
   } in
   line ctx seat_tube_top head_tube_top;
   (* Steerer tube. *)
-  line ctx front_wheel_centre head_tube_top
+  line ctx front_wheel_centre head_tube_top;
+  ctx##stroke ()
 
 let start _ =
   let canvas = create_canvas width height in
