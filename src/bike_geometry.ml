@@ -43,6 +43,18 @@ let ns_surge_medium = scale {
   wheel_base        = 1103.0;
 }
 
+let ns_surge_large = scale {
+  bb_rise           = -13.5;
+  chain_stay_length = 411.0;
+  head_angle        = 65.5 *. pi /. 180.0;
+  reach             = 409.0;
+  seat_angle        = 72.0 *. pi /. 180.0;
+  seat_tube_length  = 432.0;
+  stack             = 613.0;
+  wheel_radius      = 340.0;
+  wheel_base        = 1124.0;
+}
+
 let width = 600
 let height = width
 
@@ -104,9 +116,11 @@ let start _ =
   let canvas = create_canvas width height in
   Dom.appendChild Html.document##body canvas;
   let ctx = canvas##getContext (Html._2d_) in
-  ctx##strokeStyle <- (Js.string "#000000");
   ctx##clearRect (0., 0., float width, float height);
+  ctx##strokeStyle <- (Js.string "#000000");
   render ctx ns_surge_medium;
+  ctx##strokeStyle <- (Js.string "#FF0000");
+  render ctx ns_surge_large;
   ctx##stroke ();
   Js._false
 
