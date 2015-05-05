@@ -95,7 +95,9 @@ let render ctx geometry =
     x = bb_centre.x -. geometry.reach;
     y = bb_centre.y -. geometry.stack;
   } in
-  line ctx seat_tube_top head_tube_top
+  line ctx seat_tube_top head_tube_top;
+  (* Steerer tube. *)
+  line ctx front_wheel_centre head_tube_top
 
 let start _ =
   let canvas = create_canvas width height in
