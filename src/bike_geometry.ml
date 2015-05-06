@@ -55,6 +55,42 @@ let ns_surge_large = scale {
   wheel_base        = 1124.0;
 }
 
+let cube_hanzz_pro_medium = scale {
+  bb_rise           = -20.0;
+  chain_stay_length = 430.0;
+  head_angle        = 65.5 *. pi /. 180.0;
+  reach             = 404.0;
+  seat_angle        = 68.0 *. pi /. 180.0;
+  seat_tube_length  = 425.0;
+  stack             = 596.0;
+  wheel_radius      = 340.0;
+  wheel_base        = 1159.0;
+}
+
+let vitus_vee_1_small = scale {
+  bb_rise           = -45.0;
+  chain_stay_length = 429.0;
+  head_angle        = 71.0 *. pi /. 180.0;
+  reach             = 398.0;
+  seat_angle        = 73.0 *. pi /. 180.0;
+  seat_tube_length  = 410.0;
+  stack             = 543.0;
+  wheel_radius      = 340.0;
+  wheel_base        = 1040.0;
+}
+
+let orange_airo_14 = scale {
+  bb_rise           = -12.0;
+  chain_stay_length = 430.0;
+  head_angle        = 67.0 *. pi /. 180.0;
+  reach             = 370.0;
+  seat_angle        = 72.5 *. pi /. 180.0;
+  seat_tube_length  = 360.0;
+  stack             = 540.0;
+  wheel_radius      = 340.0;
+  wheel_base        = 1080.0;
+}
+
 let width = 600
 let height = width
 
@@ -121,6 +157,12 @@ let start _ =
   render ctx ns_surge_medium;
   ctx##strokeStyle <- (Js.string "#FF0000");
   render ctx ns_surge_large;
+  ctx##strokeStyle <- (Js.string "#00FF00");
+  render ctx cube_hanzz_pro_medium;
+  ctx##strokeStyle <- (Js.string "#0000FF");
+  render ctx vitus_vee_1_small;
+  ctx##strokeStyle <- (Js.string "#FF00FF");
+  render ctx orange_airo_14;
   ctx##stroke ();
   Js._false
 
