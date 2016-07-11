@@ -12,4 +12,4 @@ Executable bike_geometry
   CompiledObject: byte
   Path:           src
   MainIs:         bike_geometry.ml
-  BuildDepends:   js_of_ocaml, js_of_ocaml.syntax
+  BuildDepends:   js_of_ocaml, js_of_ocaml.ppx

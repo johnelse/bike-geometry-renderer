@@ -96,21 +96,21 @@ let height = width
 
 let create_canvas width height =
   let canvas = Html.createCanvas Html.document in
-  canvas##width <- width;
-  canvas##height <- height;
+  canvas##.width := width;
+  canvas##.height := height;
   canvas
 
 let circle ctx centre radius =
-  ctx##moveTo (centre.x +. radius, centre.y);
-  ctx##arc (centre.x, centre.y, radius, 0., 2. *. pi, Js._true);
-  ctx##stroke ()
+  ctx##(moveTo (centre.x +. radius) (centre.y));
+  ctx##(arc (centre.x) (centre.y) radius (0.) (2. *. pi) (Js._true));
+  ctx##stroke
 
 let line ctx start finish =
-  ctx##moveTo (start.x, start.y);
-  ctx##lineTo (finish.x, finish.y)
+  ctx##(moveTo (start.x) (start.y));
+  ctx##(lineTo (finish.x) (finish.y))
 
 let render ctx geometry =
-  ctx##beginPath ();
+  ctx##beginPath;
   (* Front wheel. *)
   let front_wheel_centre = {
     x = geometry.wheel_radius;
@@ -146,25 +146,25 @@ let render ctx geometry =
   line ctx seat_tube_top head_tube_top;
   (* Steerer tube. *)
   line ctx front_wheel_centre head_tube_top;
-  ctx##stroke ()
+  ctx##stroke
 
 let start _ =
   let canvas = create_canvas width height in
-  Dom.appendChild Html.document##body canvas;
-  let ctx = canvas##getContext (Html._2d_) in
-  ctx##clearRect (0., 0., float width, float height);
-  ctx##strokeStyle <- (Js.string "#000000");
+  Dom.appendChild Html.document##.body canvas;
+  let ctx = canvas##(getContext (Html._2d_)) in
+  ctx##(clearRect (0.) (0.) (float width) (float height));
+  ctx##.strokeStyle := (Js.string "#000000");
   render ctx ns_surge_medium;
-  ctx##strokeStyle <- (Js.string "#FF0000");
+  ctx##.strokeStyle := (Js.string "#FF0000");
   render ctx ns_surge_large;
-  ctx##strokeStyle <- (Js.string "#00FF00");
+  ctx##.strokeStyle := (Js.string "#00FF00");
   render ctx cube_hanzz_pro_medium;
-  ctx##strokeStyle <- (Js.string "#0000FF");
+  ctx##.strokeStyle := (Js.string "#0000FF");
   render ctx vitus_vee_1_small;
-  ctx##strokeStyle <- (Js.string "#FF00FF");
+  ctx##.strokeStyle := (Js.string "#FF00FF");
   render ctx orange_airo_14;
-  ctx##stroke ();
+  ctx##stroke;
   Js._false
 
 let _ =
-  Html.window##onload <- Html.handler start
+  Html.window##.onload := Html.handler start
