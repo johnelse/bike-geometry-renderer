@@ -8,8 +8,12 @@ Copyrights:   (C) 2015 John Else
 BuildTools:   ocamlbuild
 Plugins:      META (0.4), DevFiles (0.4)
 
+PostCleanCommand: rm -f page/bike_geometry.js
+
 Executable bike_geometry
   CompiledObject: byte
   Path:           src
   MainIs:         bike_geometry.ml
   BuildDepends:   js_of_ocaml, js_of_ocaml.ppx
+
+PostBuildCommand: js_of_ocaml.exe bike_geometry.byte -o page/bike_geometry.js
