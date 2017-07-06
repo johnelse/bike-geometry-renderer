@@ -1,5 +1,5 @@
 bike_geometry.js: all
-	js_of_ocaml bike_geometry.byte -o page/bike_geometry.js
+	js_of_ocaml.exe bike_geometry.byte -o page/bike_geometry.js
 
 # OASIS_START
 # DO NOT EDIT (digest: a3c674b4239234cbbe53afe090018954)
